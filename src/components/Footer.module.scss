@@ -1,0 +1,8 @@
+
+@media (max-width: 768px) { /* Utilisation explicite ici */
+    .mobile {
+        text-align: center;
+        flex-direction: column;
+        align-items: center;
+    }
+}
