@@ -1,4 +1,6 @@
 import { IconType } from "react-icons";
+import { FaJs, FaNodeJs, FaBootstrap, FaHtml5, FaCss3Alt } from "react-icons/fa";
+// import { iconLibrary } from "@/once-ui/icons";
 
 import {
   HiChevronUp,
@@ -67,4 +69,10 @@ export const iconLibrary: Record<string, IconType> = {
   x: FaXTwitter,
   clipboard: HiClipboard,
   arrowUpRightFromSquare: HiArrowTopRightOnSquare,
+  javascript: FaJs,
+  nodejs: FaNodeJs,
+  bootstrap: FaBootstrap,
+  html5: FaHtml5,
+  css3: FaCss3Alt,
+
 };

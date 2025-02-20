@@ -1,4 +1,6 @@
 import { InlineCode } from "@/once-ui/components";
+import TechnicalSkills from "@/components/TechnicalSkills";
+// import { technicalSkills } from "@/app/resources/content";
 
 const person = {
   firstName: "Magib",
@@ -208,7 +210,7 @@ const about = {
 
   studies: {
     display: true, // set to false to hide this section
-    title: "Studies",
+    title: "Education",
     institutions: [
       {
         name: "Centre de formation CF2M à Bruxelles",
@@ -232,41 +234,39 @@ const about = {
     title: "Technical skills",
     skills: [
       {
-        title: "Figma",
-        description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Frontend",
+        description: "Développement frontend moderne",
+        icons: ["javascript", "html5", "css3", "bootstrap"], // Associez aux clés de `iconLibrary`
       },
       {
-        title: "Next.js",
-        description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        title: "Backend",
+        description: "Compétences backend",
+        icons: ["nodejs"], // Une seule icône ici
       },
     ],
   },
 };
-
+export const technicalSkills = [
+  {
+    title: "Langages de programmation",
+    description: "Liste des langages que j'utilise fréquemment.",
+    icons: [
+      { name: "JavaScript", icon: "javascript" }, // Utilise la clé définie dans `iconLibrary`
+      { name: "Node.js", icon: "nodejs" },
+      { name: "Bootstrap", icon: "bootstrap" },
+      { name: "HTML5", icon: "html5" },
+      { name: "CSS3", icon: "css3" },
+    ],
+  },
+  {
+    title: "Next.js",
+    description: "Building next gen apps with Next.js + Once UI + Supabase.",
+    // Si vous utilisez d'autres éléments comme des images, vous pouvez les définir ici.
+    icons: [
+      // ajoutez des icônes supplémentaires si besoin
+    ],
+  },
+];
 const blog = {
   label: "Blog",
   title: "Writing about design and tech...",
