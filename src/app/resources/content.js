@@ -231,46 +231,23 @@ const about = {
     ],
   },
   technical: {
-    title: "Technical skills",
+    title: "Les skills techniques",
     display: true, // Active ou non l'affichage de cette section
     skills: [
       {
         title: "Frontend",
         description: "Outils et technologies pour le développement frontend",
-        icons: ["javascript", "html5", "css3"], // Correspond exactement aux clés de `iconLibrary`
+        icons: ["javascript", "html5", "css3","bootstrap", "wordpress", "symfony", "react", "nextjs", "figma", "photoshop"], // Correspond exactement aux clés de `iconLibrary`
       },
       {
         title: "Backend",
         description: "Outils et technologies backend",
-        icons: ["nodejs", "express", "mongodb"],
+        icons: ["nodejs", "mysql", "mariadb", "docker", "composer", "nextjs", "php"],
       },
     ],
   }
 };
-// const skills = [
-//   // Links are automatically displayed.
-//   // Import new icons in /once-ui/icons.ts
-//   {
-//     name: "GitHub",
-//     icon: "github",
-//     link: "https://github.com/mageeeb",
-//   },
-//   {
-//     name: "LinkedIn",
-//     icon: "linkedin",
-//     link: "https://www.linkedin.com/in/magib-sall-b45090129/",
-//   },
-//   {
-//     name: "X",
-//     icon: "x",
-//     link: "",
-//   },
-//   {
-//     name: "Email",
-//     icon: "email",
-//     link: "mailto:example@gmail.com",
-//   },
-// ];
+
 const blog = {
   label: "Blog",
   title: "Writing about design and tech...",

@@ -26,6 +26,13 @@ import {
   HiOutlineEye,
   HiOutlineEyeSlash,
 } from "react-icons/hi2";
+import { FaDocker, FaWordpress, FaPhp } from "react-icons/fa";
+import { SiSymfony, SiComposer, SiReact, SiNextdotjs, SiMariadb,
+  SiMysql, SiTypescript,
+  SiFigma,
+  SiAdobephotoshop,
+
+} from "react-icons/si";
 
 import {
   PiHouseDuotone,
@@ -74,5 +81,20 @@ export const iconLibrary: Record<string, IconType> = {
   bootstrap: FaBootstrap,
   html5: FaHtml5,
   css3: FaCss3Alt,
+  docker: FaDocker, // Docker
+  symfony: SiSymfony, // Symfony
+  composer: SiComposer, // Composer
+  wordpress: FaWordpress, // WordPress
+  php: FaPhp, // PHP
+  react: SiReact, // React
+  nextjs: SiNextdotjs, // Next.js
+  mariadb: SiMariadb, // MariaDB
+  mysql: SiMysql, // MySQL
+  typescript: SiTypescript, // TypeScript
+  figma: SiFigma, // Figma
+  photoshop: SiAdobephotoshop, // Photoshop
+
+
+
 
 };
