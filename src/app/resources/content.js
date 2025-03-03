@@ -2,6 +2,7 @@ import { InlineCode } from "@/once-ui/components";
 import TechnicalSkills from "@/components/TechnicalSkills";
 // import { technicalSkills } from "@/app/resources/content";
 
+
 const person = {
   firstName: "Magib",
   lastName: "Sall",
@@ -39,8 +40,8 @@ const social = [
     link: "https://www.linkedin.com/in/magib-sall-b45090129/",
   },
   {
-    name: "X",
-    icon: "x",
+    name: "FaXTwitter",
+    icon: "FaXTwitter",
     link: "",
   },
   {
@@ -230,43 +231,46 @@ const about = {
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
     title: "Technical skills",
+    display: true, // Active ou non l'affichage de cette section
     skills: [
       {
         title: "Frontend",
-        description: "Développement frontend moderne",
-        icons: ["javascript", "html5", "css3", "bootstrap"], // Associez aux clés de `iconLibrary`
+        description: "Outils et technologies pour le développement frontend",
+        icons: ["javascript", "html5", "css3"], // Correspond exactement aux clés de `iconLibrary`
       },
       {
         title: "Backend",
-        description: "Compétences backend",
-        icons: ["nodejs"], // Une seule icône ici
+        description: "Outils et technologies backend",
+        icons: ["nodejs", "express", "mongodb"],
       },
     ],
-  },
+  }
 };
-export const technicalSkills = [
-  {
-    title: "Langages de programmation",
-    description: "Liste des langages que j'utilise fréquemment.",
-    icons: [
-      { name: "JavaScript", icon: "javascript" }, // Utilise la clé définie dans `iconLibrary`
-      { name: "Node.js", icon: "nodejs" },
-      { name: "Bootstrap", icon: "bootstrap" },
-      { name: "HTML5", icon: "html5" },
-      { name: "CSS3", icon: "css3" },
-    ],
-  },
-  {
-    title: "Next.js",
-    description: "Building next gen apps with Next.js + Once UI + Supabase.",
-    // Si vous utilisez d'autres éléments comme des images, vous pouvez les définir ici.
-    icons: [
-      // ajoutez des icônes supplémentaires si besoin
-    ],
-  },
-];
+// const skills = [
+//   // Links are automatically displayed.
+//   // Import new icons in /once-ui/icons.ts
+//   {
+//     name: "GitHub",
+//     icon: "github",
+//     link: "https://github.com/mageeeb",
+//   },
+//   {
+//     name: "LinkedIn",
+//     icon: "linkedin",
+//     link: "https://www.linkedin.com/in/magib-sall-b45090129/",
+//   },
+//   {
+//     name: "X",
+//     icon: "x",
+//     link: "",
+//   },
+//   {
+//     name: "Email",
+//     icon: "email",
+//     link: "mailto:example@gmail.com",
+//   },
+// ];
 const blog = {
   label: "Blog",
   title: "Writing about design and tech...",
@@ -361,5 +365,22 @@ const gallery = {
     },
   ],
 };
+
+// const technical = {
+//   display: true, // Autoriser l'affichage de la section
+//   title: "Technical skills", // Titre de la section
+//   skills: [
+//     {
+//       title: "Frontend", // Titre de la catégorie
+//       description: "Outils et technologies pour les interfaces utilisateur",
+//       icons: ["javascript", "html5", "css3", "bootstrap"], // Clés correspondant à celles dans `iconLibrary`
+//     },
+//     {
+//       title: "Backend",
+//       description: "Frameworks et outils pour les API et les services",
+//       icons: ["nodejs", "github"], // Clés d'icônes valides
+//     },
+//   ],
+// };
 
 export { person, social, newsletter, home, about, blog, work, gallery };
