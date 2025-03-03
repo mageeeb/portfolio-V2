@@ -83,13 +83,20 @@ const about = {
     display: true,
     title: "Introduction",
     description: (
-      <>
-        En tant que développeur web Full Stack je conçoit et développe des applications web en travaillant à la fois sur le Front-end
-        (interface utilisateur) et le Back-end (serveur, base de données). Il gère l’ensemble du cycle de développement,
-        du conception à la mise en production, en assurant la cohérence et la performance du projet. Il collabore avec les
-        équipes (souvent en méthodologie agile) et choisit les technologies adaptées aux besoins spécifiques. Polyvalent,
-        il s’adapte aux exigences techniques et fonctionnelles pour livrer des solutions complètes et optimisées.
-      </>
+        <>
+          En tant que développeur web Full Stack, je conçois et développe des applications web
+          en travaillant à la fois sur le Front-end (interface utilisateur) et le Back-end (serveur, base de données).
+          <br/> <br/>
+
+          Je gère l’ensemble du cycle de développement, de la conception à la mise en production,
+          en assurant la cohérence et la performance du projet. <br/> <br/>
+
+          Je collabore avec les équipes (souvent en méthodologie agile) et choisis les technologies adaptées
+          aux besoins spécifiques. <br/> <br/>
+
+          Polyvalent, je m’adapte aux exigences techniques et fonctionnelles pour livrer des solutions complètes
+          et optimisées.
+        </>
     ),
   },
   work: {
