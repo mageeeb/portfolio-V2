@@ -350,21 +350,5 @@ const gallery = {
   ],
 };
 
-// const technical = {
-//   display: true, // Autoriser l'affichage de la section
-//   title: "Technical skills", // Titre de la section
-//   skills: [
-//     {
-//       title: "Frontend", // Titre de la catégorie
-//       description: "Outils et technologies pour les interfaces utilisateur",
-//       icons: ["javascript", "html5", "css3", "bootstrap"], // Clés correspondant à celles dans `iconLibrary`
-//     },
-//     {
-//       title: "Backend",
-//       description: "Frameworks et outils pour les API et les services",
-//       icons: ["nodejs", "github"], // Clés d'icônes valides
-//     },
-//   ],
-// };
 
 export { person, social, newsletter, home, about, blog, work, gallery };
