@@ -9,7 +9,7 @@ export default function NotFound() {
       <Heading marginBottom="l" variant="display-default-xs">
         Page Not Found
       </Heading>
-      <Text onBackground="neutral-weak">The page you are looking for does not exist.</Text>
+      <Text onBackground="neutral-weak">Cette page n'est pas accessible!</Text>
     </Column>
   );
 }

@@ -17,11 +17,11 @@ const person = {
 
 const newsletter = {
   display: true,
-  title: <>Subscribe to {person.firstName}'s Newsletter</>,
+  title: <>Souscrir à la Newsletter de {person.firstName} </>,
   description: (
     <>
-      I occasionally write about design, technology, and share thoughts on the intersection of
-      creativity and engineering.
+      J'écris occasionnellement sur le design et la technologie, et je partage mes réflexions sur l'intersection de la
+      créativité et de l'ingénierie.
     </>
   ),
 };
