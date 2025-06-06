@@ -22,51 +22,77 @@ type Metadata = {
 
 import { notFound } from 'next/navigation';
 
-function getMDXFiles(dir: string) {
+function getBlogFiles(dir: string) {
   if (!fs.existsSync(dir)) {
     notFound();
   }
 
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+  return fs.readdirSync(dir).filter((file) => 
+    path.extname(file) === ".mdx" || path.extname(file) === ".json"
+  );
 }
 
-function readMDXFile(filePath: string) {
+function readBlogFile(filePath: string) {
     if (!fs.existsSync(filePath)) {
         notFound();
     }
 
-  const rawContent = fs.readFileSync(filePath, "utf-8");
-  const { data, content } = matter(rawContent);
+  const fileExt = path.extname(filePath);
 
-  const metadata: Metadata = {
-    title: data.title || "",
-    publishedAt: data.publishedAt,
-    summary: data.summary || "",
-    image: data.image || "",
-    images: data.images || [],
-    tag: data.tag || [],
-    team: data.team || [],
-    link: data.link || "",
-  };
+  if (fileExt === ".json") {
+    const rawContent = fs.readFileSync(filePath, "utf-8");
+    const jsonData = JSON.parse(rawContent);
 
-  return { metadata, content };
+    return {
+      metadata: {
+        title: jsonData.metadata.title || "",
+        publishedAt: jsonData.metadata.publishedAt,
+        summary: jsonData.metadata.summary || "",
+        image: jsonData.metadata.image || "",
+        images: jsonData.metadata.images || [],
+        tag: jsonData.metadata.tag || [],
+        team: jsonData.metadata.team || [],
+        link: jsonData.metadata.link || "",
+      },
+      content: jsonData.content,
+      isHTML: true
+    };
+  } else {
+    // MDX file
+    const rawContent = fs.readFileSync(filePath, "utf-8");
+    const { data, content } = matter(rawContent);
+
+    const metadata: Metadata = {
+      title: data.title || "",
+      publishedAt: data.publishedAt,
+      summary: data.summary || "",
+      image: data.image || "",
+      images: data.images || [],
+      tag: data.tag || [],
+      team: data.team || [],
+      link: data.link || "",
+    };
+
+    return { metadata, content, isHTML: false };
+  }
 }
 
-function getMDXData(dir: string) {
-  const mdxFiles = getMDXFiles(dir);
-  return mdxFiles.map((file) => {
-    const { metadata, content } = readMDXFile(path.join(dir, file));
+function getBlogData(dir: string) {
+  const blogFiles = getBlogFiles(dir);
+  return blogFiles.map((file) => {
+    const { metadata, content, isHTML } = readBlogFile(path.join(dir, file));
     const slug = path.basename(file, path.extname(file));
 
     return {
       metadata,
       slug,
       content,
+      isHTML
     };
   });
 }
 
 export function getPosts(customPath = ["", "", "", ""]) {
   const postsDir = path.join(process.cwd(), ...customPath);
-  return getMDXData(postsDir);
+  return getBlogData(postsDir);
 }

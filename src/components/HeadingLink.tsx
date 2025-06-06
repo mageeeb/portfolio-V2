@@ -1,7 +1,10 @@
 "use client";
 
 import React from "react"; // Assurez-vous que React est importé !
-import { Heading, Flex, IconButton, useToast } from "@/once-ui/components";
+import { Heading } from "@/once-ui/components/Heading";
+import { Flex } from "@/once-ui/components/Flex";
+import { IconButton } from "@/once-ui/components/IconButton";
+import { useToast } from "@/once-ui/components/ToastProvider";
 
 import styles from "@/components/HeadingLink.module.scss";
 

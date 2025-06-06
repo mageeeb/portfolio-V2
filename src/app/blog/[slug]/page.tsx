@@ -1,7 +1,12 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
-import { AvatarGroup, Button, Column, Heading, Row, Text } from "@/once-ui/components";
+import { AvatarGroup } from "@/once-ui/components/AvatarGroup";
+import { Button } from "@/once-ui/components/Button";
+import { Column } from "@/once-ui/components/Column";
+import { Heading } from "@/once-ui/components/Heading";
+import { Row } from "@/once-ui/components/Row";
+import { Text } from "@/once-ui/components/Text";
 import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
@@ -20,7 +25,9 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
   }));
 }
 
-export function generateMetadata({ params: { slug } }: BlogParams) {
+export async function generateMetadata({ params }: BlogParams) {
+  const awaitedParams = await params;
+  const slug = awaitedParams.slug;
   let post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === slug);
 
   if (!post) {
@@ -63,7 +70,9 @@ export function generateMetadata({ params: { slug } }: BlogParams) {
 
 export default async function Blog({ params }: BlogParams) {
   const posts = getPosts(["src", "app", "blog", "posts"]); // Si asynchrone, utilisez await
-  const post = posts.find((post) => post.slug === params.slug);
+  const awaitedParams = await params;
+  const slug = awaitedParams.slug;
+  const post = posts.find((post) => post.slug === slug);
 
   if (!post) {
     notFound(); // Toujours gérer l'absence d'article
@@ -111,7 +120,11 @@ export default async function Blog({ params }: BlogParams) {
           </Text>
         </Row>
         <Column as="article" fillWidth>
-          <CustomMDX source={post.content} />
+          {post.isHTML ? (
+            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+          ) : (
+            <CustomMDX source={post.content} />
+          )}
         </Column>
         <ScrollToHash />
       </Column>

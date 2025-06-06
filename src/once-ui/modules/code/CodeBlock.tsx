@@ -5,7 +5,12 @@ import React, { useState, useEffect, useRef, ReactNode } from "react";
 import "./CodeHighlight.css";
 import styles from "./CodeBlock.module.scss";
 
-import { Flex, Button, IconButton, Scroller, Row, StyleOverlay } from "@/once-ui/components";
+import { Flex } from "@/once-ui/components/Flex";
+import { Button } from "@/once-ui/components/Button";
+import { IconButton } from "@/once-ui/components/IconButton";
+import { Scroller } from "@/once-ui/components/Scroller";
+import { Row } from "@/once-ui/components/Row";
+import { StyleOverlay } from "@/once-ui/components/StyleOverlay";
 
 import Prism from "prismjs";
 import "prismjs/plugins/line-highlight/prism-line-highlight";

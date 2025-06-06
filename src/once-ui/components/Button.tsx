@@ -4,7 +4,10 @@ import React, { ReactNode, forwardRef } from "react";
 import { ElementType } from "./ElementType";
 import classNames from "classnames";
 
-import { Spinner, Icon, Arrow, Flex } from ".";
+import { Spinner } from "./Spinner";
+import { Icon } from "./Icon";
+import { Arrow } from "./Arrow";
+import { Flex } from "./Flex";
 import styles from "./Button.module.scss";
 
 interface CommonProps {

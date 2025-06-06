@@ -2,7 +2,9 @@
 
 import React, { forwardRef } from "react";
 
-import { Avatar, AvatarProps, Flex } from ".";
+import { Avatar } from "./Avatar";
+import type { AvatarProps } from "./Avatar";
+import { Flex } from "./Flex";
 import styles from "./AvatarGroup.module.scss";
 import classNames from "classnames";
 
