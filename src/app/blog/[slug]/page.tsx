@@ -11,6 +11,7 @@ import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
+import { BlogImageEnhancer } from "@/components/blog/BlogImageEnhancer";
 
 interface BlogParams {
   params: {
@@ -121,7 +122,7 @@ export default async function Blog({ params }: BlogParams) {
         </Row>
         <Column as="article" fillWidth>
           {post.isHTML ? (
-            <div dangerouslySetInnerHTML={{ __html: post.content }} />
+            <BlogImageEnhancer content={post.content} images={post.metadata.images} />
           ) : (
             <CustomMDX source={post.content} />
           )}
