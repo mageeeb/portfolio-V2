@@ -1,6 +1,9 @@
 "use client";
 
-import { Flex, RevealFx, Scroller, SmartImage } from "@/once-ui/components";
+import { Flex } from "@/once-ui/components/Flex";
+import { RevealFx } from "@/once-ui/components/RevealFx";
+import { Scroller } from "@/once-ui/components/Scroller";
+import { SmartImage } from "@/once-ui/components/SmartImage";
 import { useEffect, useState, useRef } from "react";
 
 interface Image {

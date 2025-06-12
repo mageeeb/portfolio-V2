@@ -3,7 +3,7 @@
 import React, { forwardRef } from "react";
 import classNames from "classnames";
 import styles from "./StatusIndicator.module.scss";
-import { Flex } from "./Flex";
+import { Flex } from "@/once-ui/components/Flex";
 
 interface StatusIndicatorProps extends React.ComponentProps<typeof Flex> {
   size: "s" | "m" | "l";

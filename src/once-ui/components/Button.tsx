@@ -1,13 +1,13 @@
 "use client";
 
 import React, { ReactNode, forwardRef } from "react";
-import { ElementType } from "./ElementType";
+import { ElementType } from "@/once-ui/components/ElementType";
 import classNames from "classnames";
 
-import { Spinner } from "./Spinner";
-import { Icon } from "./Icon";
-import { Arrow } from "./Arrow";
-import { Flex } from "./Flex";
+import { Spinner } from "@/once-ui/components/Spinner";
+import { Icon } from "@/once-ui/components/Icon";
+import { Arrow } from "@/once-ui/components/Arrow";
+import { Flex } from "@/once-ui/components/Flex";
 import styles from "./Button.module.scss";
 
 interface CommonProps {

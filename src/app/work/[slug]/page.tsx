@@ -1,7 +1,13 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
-import { AvatarGroup, Button, Column, Flex, Heading, SmartImage, Text } from "@/once-ui/components";
+import { AvatarGroup } from "@/once-ui/components/AvatarGroup";
+import { Button } from "@/once-ui/components/Button";
+import { Column } from "@/once-ui/components/Column";
+import { Flex } from "@/once-ui/components/Flex";
+import { Heading } from "@/once-ui/components/Heading";
+import { SmartImage } from "@/once-ui/components/SmartImage";
+import { Text } from "@/once-ui/components/Text";
 import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
@@ -20,7 +26,9 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
   }));
 }
 
-export function generateMetadata({ params: { slug } }: WorkParams) {
+export async function generateMetadata({ params }: WorkParams) {
+  const awaitedParams = await params;
+  const slug = awaitedParams.slug;
   let post = getPosts(["src", "app", "work", "projects"]).find((post) => post.slug === slug);
 
   if (!post) {
@@ -63,8 +71,11 @@ export function generateMetadata({ params: { slug } }: WorkParams) {
   };
 }
 
-export default function Project({ params }: WorkParams) {
-  let post = getPosts(["src", "app", "work", "projects"]).find((post) => post.slug === params.slug);
+export default async function Project({ params }: WorkParams) {
+  const posts = getPosts(["src", "app", "work", "projects"]);
+  const awaitedParams = await params;
+  const slug = awaitedParams.slug;
+  const post = posts.find((post) => post.slug === slug);
 
   if (!post) {
     notFound();

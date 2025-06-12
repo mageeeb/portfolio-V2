@@ -2,11 +2,11 @@
 
 import React, { forwardRef, useState, useEffect } from "react";
 import classNames from "classnames";
-import { Grid } from "./Grid";
-import { Logo } from "./Logo";
+import { Grid } from "@/once-ui/components/Grid";
+import { Logo } from "@/once-ui/components/Logo";
 import styles from "./LogoCloud.module.scss";
 import type { ComponentProps } from "react";
-import { Flex } from "./Flex";
+import { Flex } from "@/once-ui/components/Flex";
 
 type LogoProps = ComponentProps<typeof Logo>;
 
