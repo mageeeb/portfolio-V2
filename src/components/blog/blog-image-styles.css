@@ -1,0 +1,41 @@
+/* Styles for blog images to ensure they are centered and fully displayed */
+
+/* Target all images within the blog content */
+[data-blog-content] img,
+article img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
+}
+
+/* Target images directly in the content div */
+div[dangerouslySetInnerHTML] img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
+}
+
+/* Ensure image containers are also centered */
+.image-container,
+figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+
+/* Video styling */
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}

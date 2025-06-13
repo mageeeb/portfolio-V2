@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { ImageGallery } from "./ImageGallery";
+import "./blog-image-styles.css";
 
 interface BlogImageEnhancerProps {
   content: string;
@@ -27,10 +28,10 @@ export const BlogImageEnhancer: React.FC<BlogImageEnhancerProps> = ({
     if (contentRef.current) {
       const imgElements = contentRef.current.querySelectorAll('img');
       const extractedImages = Array.from(imgElements).map(img => img.src);
-      
+
       if (extractedImages.length > 0) {
         setGalleryImages(extractedImages);
-        
+
         // Add click handlers to images
         imgElements.forEach((img, index) => {
           img.style.cursor = 'pointer';
@@ -55,6 +56,7 @@ export const BlogImageEnhancer: React.FC<BlogImageEnhancerProps> = ({
         <div 
           dangerouslySetInnerHTML={{ __html: content }} 
           ref={contentRef}
+          data-blog-content="true"
         />
       </>
     );
@@ -82,6 +84,7 @@ export const BlogImageEnhancer: React.FC<BlogImageEnhancerProps> = ({
       <div 
         dangerouslySetInnerHTML={{ __html: content }} 
         ref={contentRef}
+        data-blog-content="true"
       />
       {showGallery && galleryImages.length > 0 && (
         <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, zIndex: 9999 }}>
