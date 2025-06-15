@@ -350,5 +350,53 @@ const gallery = {
   ],
 };
 
+const mes_app = {
+  label: "Mes Applications",
+  title: "Mes Mini Applications",
+  description: `Découvrez les mini applications créées par ${person.firstName}`,
+  applications: [
+    {
+      title: "Calculatrice React",
+      description: "Une calculatrice interactive développée avec React et styled-components",
+      content: "Cette application permet d'effectuer des calculs mathématiques simples avec une interface moderne et responsive.",
+      images: ["/images/gallery/2.png"],
+      link: "https://calculator-react-app.example.com",
+      avatars: [{ src: person.avatar }]
+    },
+    {
+      title: "Todo List",
+      description: "Application de gestion de tâches avec stockage local",
+      content: "Organisez vos tâches quotidiennes avec cette application simple et efficace.",
+      images: ["/images/gallery/3.png"],
+      link: "https://todo-app.example.com",
+      avatars: [{ src: person.avatar }]
+    },
+    {
+      title: "Météo App",
+      description: "Application météo utilisant l'API OpenWeatherMap",
+      content: "Consultez la météo en temps réel pour n'importe quelle ville dans le monde.",
+      images: ["/images/gallery/4.png"],
+      link: "https://weather-app.example.com",
+      avatars: [{ src: person.avatar }]
+    },
+    {
+      title: "calendrier App",
+      description: "Application de calendrier",
+      content: "Consultez la météo en temps réel pour n'importe quelle ville dans le monde.",
+      images: ["/images/gallery/5.jpg"],
+      link: "/calendar",
+      avatars: [{ src: person.avatar }]
+    },
+    {
+      title: "Hasard",
+      description: "Application pour sélectionner aléatoirement des groupes d'élèves",
+      content: "Cette application choisit au hasard 2 groupes de trois élèves sur une classe de 6.",
+      images: ["/images/gallery/6.png"],
+      link: "/hasard",
+      avatars: [{ src: person.avatar }]
+    }
+  ]
+};
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+
+export { person, social, newsletter, home, about, blog, work, gallery, mes_app };

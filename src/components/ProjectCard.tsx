@@ -67,7 +67,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 <SmartLink
                   suffixIcon="arrowRight"
                   style={{ margin: "0", width: "fit-content" }}
-                  href="https://mageeeb.com/portfolio"
+                  href="/hasard"
                 >
                   <Text variant="body-default-s">Voir les réalisations</Text>
                 </SmartLink>
@@ -76,7 +76,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                   <SmartLink
                       suffixIcon="arrowRight"
                       style={{ margin: "0", width: "fit-content" }}
-                      href="https://mageeeb.com/portfolio"
+                      href="/hasard"
                   >
                       <Text variant="body-default-s">Voir les réalisations</Text>
                   </SmartLink>

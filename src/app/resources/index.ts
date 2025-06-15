@@ -17,4 +17,5 @@ export {
   blog,
   work,
   gallery,
+  mes_app,
 } from "@/app/resources/content";
