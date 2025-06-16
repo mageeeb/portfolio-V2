@@ -98,6 +98,7 @@ const Text = <T extends ElementType = "span">({
     <Component
       className={combinedClasses}
       style={{
+        // Use React's camelCase property naming convention
         textAlign: align,
         textWrap: wrap,
         ...style,

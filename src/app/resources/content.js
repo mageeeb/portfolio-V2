@@ -391,7 +391,7 @@ const mes_app = {
       title: "Hasard",
       description: "Application pour sélectionner aléatoirement 2 groupes d'élèves",
       content: "Cette application choisit au hasard 2 groupes d'élèves (de 6 à 9 élèves au total).",
-      images: ["/images/gallery/6.png"],
+      images: ["/images/gallery/hasard.jpg"],
       link: "/hasard",
       avatars: [{ src: person.avatar }]
     }

@@ -63,23 +63,14 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
               </Text>
             )}
             <Flex gap="24" wrap>
-              {content?.trim() && (
+              {link && (
                 <SmartLink
                   suffixIcon="arrowRight"
                   style={{ margin: "0", width: "fit-content" }}
-                  href="/hasard"
+                  href={link}
                 >
-                  <Text variant="body-default-s">Voir les réalisations</Text>
+                  <Text variant="body-default-s">Voir {title.toLowerCase()}</Text>
                 </SmartLink>
-              )}
-              {link && (
-                  <SmartLink
-                      suffixIcon="arrowRight"
-                      style={{ margin: "0", width: "fit-content" }}
-                      href="/hasard"
-                  >
-                      <Text variant="body-default-s">Voir les réalisations</Text>
-                  </SmartLink>
               )}
             </Flex>
           </Column>

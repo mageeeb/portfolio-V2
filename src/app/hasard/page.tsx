@@ -396,7 +396,9 @@ const Confetti = memo(() => {
               style={{
                 boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
                 maxWidth: "400px",
-                textAlign: "center"
+                // Use CSS text-align property instead of textAlign
+                // This avoids React warnings about unrecognized DOM props
+                "text-align": "center"
               }}
             >
               <Text variant="body-strong-m" align="center">
@@ -502,7 +504,9 @@ const Confetti = memo(() => {
                 variant="body-strong-l"
                 style={{
                   minWidth: "30px",
-                  textAlign: "center",
+                  // Use CSS text-align property instead of textAlign
+                  // This avoids React warnings about unrecognized DOM props
+                  "text-align": "center",
                   color: "var(--color-brand-on-background-strong)"
                 }}
               >
