@@ -34,22 +34,25 @@ export function divideIntoGroups<T>(array: T[], groupSize: number): T[][] {
 /**
  * Creates random groups from a list of students
  * @param students Array of student names
- * @param groupSize Size of each group (default: 3)
- * @returns Array of groups, each containing student names
+ * @returns Array of exactly 2 groups, each containing student names
  */
-export function createRandomGroups(students: string[], groupSize: number = 3): string[][] {
+export function createRandomGroups(students: string[]): string[][] {
   // Validate input
   if (!students || students.length === 0) {
     throw new Error("Student list cannot be empty");
   }
-  
+
   if (students.some(student => !student.trim())) {
     throw new Error("All student names must be filled");
   }
-  
+
   // Shuffle the students array
   const shuffledStudents = shuffleArray(students);
-  
-  // Divide into groups of specified size
-  return divideIntoGroups(shuffledStudents, groupSize);
+
+  // Always create exactly 2 groups
+  const midpoint = Math.ceil(shuffledStudents.length / 2);
+  const group1 = shuffledStudents.slice(0, midpoint);
+  const group2 = shuffledStudents.slice(midpoint);
+
+  return [group1, group2];
 }

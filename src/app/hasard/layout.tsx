@@ -3,7 +3,7 @@ import { baseURL } from "@/app/resources";
 
 export async function generateMetadata() {
   const title = "Hasard";
-  const description = "Application pour sélectionner aléatoirement des groupes d'élèves";
+  const description = "Application pour sélectionner aléatoirement 2 groupes d'élèves";
   const ogImage = `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
   return {
