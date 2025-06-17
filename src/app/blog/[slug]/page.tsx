@@ -14,9 +14,9 @@ import ScrollToHash from "@/components/ScrollToHash";
 import { BlogImageEnhancer } from "@/components/blog/BlogImageEnhancer";
 
 interface BlogParams {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
