@@ -14,9 +14,9 @@ import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
 
 interface WorkParams {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
+  };
 }
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
@@ -82,7 +82,7 @@ export default async function Project({ params }: WorkParams) {
   }
 
   const avatars =
-    post.metadata.team?.map((person: { avatar: string }) => ({
+    post.metadata.team?.map((person) => ({
       src: person.avatar,
     })) || [];
 

@@ -14,9 +14,9 @@ import ScrollToHash from "@/components/ScrollToHash";
 import { BlogImageEnhancer } from "@/components/blog/BlogImageEnhancer";
 
 interface BlogParams {
-  params: Promise<{
+  params: {
     slug: string;
-  }>;
+  };
 }
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
@@ -80,7 +80,7 @@ export default async function Blog({ params }: BlogParams) {
   }
 
   const avatars =
-      post.metadata.team?.map((person: { avatar: string }) => ({
+      post.metadata.team?.map((person) => ({
         src: person.avatar,
       })) || [];
 
