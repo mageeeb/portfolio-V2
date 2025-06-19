@@ -27,8 +27,8 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 }
 
 export async function generateMetadata({ params }: BlogParams) {
-  const awaitedParams = await params;
-  const slug = awaitedParams.slug;
+  const slug = params.slug;
+
   let post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === slug);
 
   if (!post) {
@@ -43,7 +43,10 @@ export async function generateMetadata({ params }: BlogParams) {
     image,
     team,
   } = post.metadata;
-  let ogImage = image ? `https://${baseURL}${image}` : `https://${baseURL}/og?title=${title}`;
+
+  let ogImage = image
+      ? `https://${baseURL}${image}`
+      : `https://${baseURL}/og?title=${title}`;
 
   return {
     title,
@@ -54,11 +57,7 @@ export async function generateMetadata({ params }: BlogParams) {
       type: "article",
       publishedTime,
       url: `https://${baseURL}/blog/${post.slug}`,
-      images: [
-        {
-          url: ogImage,
-        },
-      ],
+      images: [{ url: ogImage }],
     },
     twitter: {
       card: "summary_large_image",
@@ -70,13 +69,13 @@ export async function generateMetadata({ params }: BlogParams) {
 }
 
 export default async function Blog({ params }: BlogParams) {
-  const posts = getPosts(["src", "app", "blog", "posts"]); // Si asynchrone, utilisez await
-  const awaitedParams = await params;
-  const slug = awaitedParams.slug;
+  const slug = params.slug;
+
+  const posts = getPosts(["src", "app", "blog", "posts"]);
   const post = posts.find((post) => post.slug === slug);
 
   if (!post) {
-    notFound(); // Toujours gérer l'absence d'article
+    notFound();
   }
 
   const avatars =
