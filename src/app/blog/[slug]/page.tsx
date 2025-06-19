@@ -13,11 +13,12 @@ import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
 import { BlogImageEnhancer } from "@/components/blog/BlogImageEnhancer";
 
-interface BlogParams {
-  params: {
-    slug: string;
-  };
-}
+type PageProps = {
+    params: {
+        slug: string;
+    };
+};
+
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const posts = getPosts(["src", "app", "blog", "posts"]);
@@ -26,62 +27,58 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
   }));
 }
 
-export async function generateMetadata({ params }: BlogParams) {
-  const slug = params.slug;
+export async function generateMetadata({ params }: PageProps) {
+    const slug = params.slug;
+    const post = getPosts(["src", "app", "blog", "posts"]).find(
+        (post) => post.slug === slug
+    );
 
-  let post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === slug);
+    if (!post) return;
 
-  if (!post) {
-    return;
-  }
+    const {
+        title,
+        publishedAt: publishedTime,
+        summary: description,
+        image,
+    } = post.metadata;
 
-  let {
-    title,
-    publishedAt: publishedTime,
-    summary: description,
-    images,
-    image,
-    team,
-  } = post.metadata;
+    const ogImage = image
+        ? `https://${baseURL}${image}`
+        : `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
 
-  let ogImage = image
-      ? `https://${baseURL}${image}`
-      : `https://${baseURL}/og?title=${title}`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      title,
-      description,
-      type: "article",
-      publishedTime,
-      url: `https://${baseURL}/blog/${post.slug}`,
-      images: [{ url: ogImage }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [ogImage],
-    },
-  };
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            type: "article",
+            publishedTime,
+            url: `https://${baseURL}/blog/${post.slug}`,
+            images: [{ url: ogImage }],
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: [ogImage],
+        },
+    };
 }
 
-export default async function Blog({ params }: BlogParams) {
-  const slug = params.slug;
 
-  const posts = getPosts(["src", "app", "blog", "posts"]);
-  const post = posts.find((post) => post.slug === slug);
+export default async function Blog({ params }: PageProps) {
+    const slug = params.slug;
 
-  if (!post) {
-    notFound();
-  }
+    const posts = getPosts(["src", "app", "blog", "posts"]);
+    const post = posts.find((post) => post.slug === slug);
 
-  const avatars =
-      post.metadata.team?.map((person) => ({
-        src: person.avatar,
-      })) || [];
+    if (!post) {
+        notFound();
+    }
+
+    const avatars =
+        post.metadata.team?.map((person) => ({ src: person.avatar })) || [];
 
   return (
       <Column as="section" maxWidth="xs" gap="l">
