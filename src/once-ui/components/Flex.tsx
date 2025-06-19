@@ -301,7 +301,7 @@ const Flex = forwardRef<HTMLDivElement, ComponentProps>(
       aspectRatio: aspectRatio,
       // Use CSS text-align property instead of textAlign
       // This avoids React warnings about unrecognized DOM props
-      "text-align": align,
+      "textAlign": align,
       ...style,
     };
 
