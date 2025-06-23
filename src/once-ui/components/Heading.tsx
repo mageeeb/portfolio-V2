@@ -100,7 +100,7 @@ const Heading = <T extends ElementType = "h1">({
       style={{
         // Use CSS text-align property instead of textAlign
         // This avoids React warnings about unrecognized DOM props
-        "text-align": align,
+        "textAlign": align,
         textWrap: wrap,
         ...style,
       }}

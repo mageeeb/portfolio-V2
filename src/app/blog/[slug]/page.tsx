@@ -13,21 +13,18 @@ import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
 import { BlogImageEnhancer } from "@/components/blog/BlogImageEnhancer";
 
-type PageProps = {
-    params: {
-        slug: string;
-    };
-};
-
-
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const posts = getPosts(["src", "app", "blog", "posts"]);
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+    const posts = getPosts(["src", "app", "blog", "posts"]);
+    return posts.map((post) => ({
+        slug: post.slug,
+    }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({
+                                           params,
+                                       }: {
+    params: { slug: string };
+}) {
     const slug = params.slug;
     const post = getPosts(["src", "app", "blog", "posts"]).find(
         (post) => post.slug === slug
@@ -66,8 +63,11 @@ export async function generateMetadata({ params }: PageProps) {
     };
 }
 
-
-export default async function Blog({ params }: PageProps) {
+export default async function Blog({
+                                       params,
+                                   }: {
+    params: { slug: string };
+}) {
     const slug = params.slug;
 
     const posts = getPosts(["src", "app", "blog", "posts"]);
@@ -80,50 +80,59 @@ export default async function Blog({ params }: PageProps) {
     const avatars =
         post.metadata.team?.map((person) => ({ src: person.avatar })) || [];
 
-  return (
-      <Column as="section" maxWidth="xs" gap="l">
-        <script
-            type="application/ld+json"
-            suppressHydrationWarning
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "BlogPosting",
-                headline: post.metadata.title,
-                datePublished: post.metadata.publishedAt,
-                dateModified: post.metadata.publishedAt,
-                description: post.metadata.summary,
-                image: post.metadata.image
-                    ? `https://${baseURL}${post.metadata.image}`
-                    : `https://${baseURL}/og?title=${encodeURIComponent(
-                        post.metadata.title
-                    )}`,
-                url: `https://${baseURL}/blog/${post.slug}`,
-                author: {
-                  "@type": "Person",
-                  name: person.name,
-                },
-              }),
-            }}
-        />
-        <Button href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft">
-          Posts
-        </Button>
-        <Heading variant="display-strong-s">{post.metadata.title}</Heading>
-        <Row gap="12" vertical="center">
-          {avatars.length > 0 && <AvatarGroup size="s" avatars={avatars} />}
-          <Text variant="body-default-s" onBackground="neutral-weak">
-            {formatDate(post.metadata.publishedAt)}
-          </Text>
-        </Row>
-        <Column as="article" fillWidth>
-          {post.isHTML ? (
-            <BlogImageEnhancer content={post.content} images={post.metadata.images} />
-          ) : (
-            <CustomMDX source={post.content} />
-          )}
+    return (
+        <Column as="section" maxWidth="xs" gap="l">
+            <script
+                type="application/ld+json"
+                suppressHydrationWarning
+                dangerouslySetInnerHTML={{
+                    __html: JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BlogPosting",
+                        headline: post.metadata.title,
+                        datePublished: post.metadata.publishedAt,
+                        dateModified: post.metadata.publishedAt,
+                        description: post.metadata.summary,
+                        image: post.metadata.image
+                            ? `https://${baseURL}${post.metadata.image}`
+                            : `https://${baseURL}/og?title=${encodeURIComponent(
+                                post.metadata.title
+                            )}`,
+                        url: `https://${baseURL}/blog/${post.slug}`,
+                        author: {
+                            "@type": "Person",
+                            name: person.name,
+                        },
+                    }),
+                }}
+            />
+            <Button
+                href="/blog"
+                weight="default"
+                variant="tertiary"
+                size="s"
+                prefixIcon="chevronLeft"
+            >
+                Posts
+            </Button>
+            <Heading variant="display-strong-s">{post.metadata.title}</Heading>
+            <Row gap="12" vertical="center">
+                {avatars.length > 0 && <AvatarGroup size="s" avatars={avatars} />}
+                <Text variant="body-default-s" onBackground="neutral-weak">
+                    {formatDate(post.metadata.publishedAt)}
+                </Text>
+            </Row>
+            <Column as="article" fillWidth>
+                {post.isHTML ? (
+                    <BlogImageEnhancer
+                        content={post.content}
+                        images={post.metadata.images}
+                    />
+                ) : (
+                    <CustomMDX source={post.content} />
+                )}
+            </Column>
+            <ScrollToHash />
         </Column>
-        <ScrollToHash />
-      </Column>
-  );
+    );
 }
