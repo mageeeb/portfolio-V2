@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
-import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
+import { CustomMDX } from "@/components/mdx";
+import { BlogImageEnhancer } from "@/components/blog/BlogImageEnhancer";
 import { AvatarGroup } from "@/once-ui/components/AvatarGroup";
 import { Button } from "@/once-ui/components/Button";
 import { Column } from "@/once-ui/components/Column";
@@ -11,34 +12,23 @@ import { baseURL } from "@/app/resources";
 import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
-import { BlogImageEnhancer } from "@/components/blog/BlogImageEnhancer";
 
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-    const posts = getPosts(["src", "app", "blog", "posts"]);
-    return posts.map((post) => ({
-        slug: post.slug,
-    }));
+type Params = { slug: string };
+
+export async function generateStaticParams(): Promise<{ params: Params }[]> {
+    const posts = await getPosts(["src", "app", "blog", "posts"]);
+    return posts.map((post) => ({ params: { slug: post.slug } }));
 }
+type Props = {
+    params: Params;
+};
+export async function generateMetadata({ params }: { params: Params }) {
+    const { slug } = params;
+    const posts = await getPosts(["src", "app", "blog", "posts"]);
+    const post = posts.find((p) => p.slug === slug);
+    if (!post) return notFound();
 
-export async function generateMetadata({
-                                           params,
-                                       }: {
-    params: { slug: string };
-}) {
-    const slug = params.slug;
-    const post = getPosts(["src", "app", "blog", "posts"]).find(
-        (post) => post.slug === slug
-    );
-
-    if (!post) return;
-
-    const {
-        title,
-        publishedAt: publishedTime,
-        summary: description,
-        image,
-    } = post.metadata;
-
+    const { title, publishedAt, summary: description, image } = post.metadata;
     const ogImage = image
         ? `https://${baseURL}${image}`
         : `https://${baseURL}/og?title=${encodeURIComponent(title)}`;
@@ -50,7 +40,7 @@ export async function generateMetadata({
             title,
             description,
             type: "article",
-            publishedTime,
+            publishedTime: publishedAt,
             url: `https://${baseURL}/blog/${post.slug}`,
             images: [{ url: ogImage }],
         },
@@ -63,22 +53,17 @@ export async function generateMetadata({
     };
 }
 
-export default async function Blog({
-                                       params,
-                                   }: {
-    params: { slug: string };
-}) {
+export default async function BlogPage({ params }: { params: Params }) {
     const slug = params.slug;
-
     const posts = getPosts(["src", "app", "blog", "posts"]);
-    const post = posts.find((post) => post.slug === slug);
+    const post = posts.find((p) => p.slug === slug);
 
     if (!post) {
         notFound();
     }
 
     const avatars =
-        post.metadata.team?.map((person) => ({ src: person.avatar })) || [];
+        (post.metadata.team as { avatar: string }[])?.map((p) => ({ src: p.avatar })) || [];
 
     return (
         <Column as="section" maxWidth="xs" gap="l">
