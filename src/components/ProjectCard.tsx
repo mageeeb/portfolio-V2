@@ -11,7 +11,7 @@ import {
 } from "@/once-ui/components";
 
 interface ProjectCardProps {
-  href: string;
+  href?: string;
   priority?: boolean;
   images: string[];
   title: string;
