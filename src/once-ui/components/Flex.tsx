@@ -299,9 +299,9 @@ const Flex = forwardRef<HTMLDivElement, ComponentProps>(
       width: parseDimension(width, "width"),
       height: parseDimension(height, "height"),
       aspectRatio: aspectRatio,
-      // Use CSS text-align property instead of textAlign
+      // Use CSS textAlign property
       // This avoids React warnings about unrecognized DOM props
-      "textAlign": align,
+      textAlign: align,
       ...style,
     };
 

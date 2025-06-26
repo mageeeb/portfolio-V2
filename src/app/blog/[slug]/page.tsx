@@ -13,17 +13,19 @@ import { person } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
 
-type Params = { slug: string };
-
-export async function generateStaticParams(): Promise<{ params: Params }[]> {
-    const posts = await getPosts(["src", "app", "blog", "posts"]);
-    return posts.map((post) => ({ params: { slug: post.slug } }));
+interface Params {
+    params: {
+        slug: string;
+    };
 }
-type Props = {
-    params: Params;
-};
-export async function generateMetadata({ params }: { params: Params }) {
-    const { slug } = params;
+
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
+    const posts = await getPosts(["src", "app", "blog", "posts"]);
+    return posts.map((post) => ({ slug: post.slug }));
+}
+export async function generateMetadata({ params }: Params) {
+    const awaitedParams = await params;
+    const slug = awaitedParams.slug;
     const posts = await getPosts(["src", "app", "blog", "posts"]);
     const post = posts.find((p) => p.slug === slug);
     if (!post) return notFound();
@@ -53,8 +55,9 @@ export async function generateMetadata({ params }: { params: Params }) {
     };
 }
 
-export default async function BlogPage({ params }: { params: Params }) {
-    const slug = params.slug;
+export default async function BlogPage({ params }: Params) {
+    const awaitedParams = await params;
+    const slug = awaitedParams.slug;
     const posts = getPosts(["src", "app", "blog", "posts"]);
     const post = posts.find((p) => p.slug === slug);
 
